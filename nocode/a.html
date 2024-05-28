@@ -1,0 +1,349 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Platform</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <style>
+        .custom-carousel .carousel-item {
+            height: 300px;
+        }
+        .custom-carousel .carousel-item img {
+            object-fit: cover;
+            height: 100%;
+        }
+        .hidden {
+            opacity: 0;
+        }
+
+        .hidden { display: none; }
+        .hamburger { cursor: pointer; }
+        .menu { display: none; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#" id="homeLink">Home</a>
+         <div class="hamburger navbar-toggler" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+                &#9776;
+            </div>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="registerLink">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="loginLink">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="depositLink" style="display: none;">Deposit</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="logoutLink" style="display: none;">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    
+    <div id="content"></div>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const contentDiv = document.getElementById('content');
+            const registerLink = document.getElementById('registerLink');
+            const loginLink = document.getElementById('loginLink');
+            const depositLink = document.getElementById('depositLink');
+            const logoutLink = document.getElementById('logoutLink');
+            const homeLink = document.getElementById('homeLink');
+
+            const showHomePage = () => {
+                contentDiv.innerHTML = `
+                    <div class="jumbotron">
+                        <h1 class="display-4">Welcome to Our Financial Platform!</h1>
+                        <p class="lead">Your one-stop solution for managing your financial transactions efficiently and securely.</p>
+                        <hr class="my-4">
+                        <p>Our platform offers a range of features designed to help you manage your money with ease. Register now to get started!</p>
+                        <p>
+                            <a class="btn btn-primary btn-lg" href="#" id="registerNow" role="button">Register Now</a>
+                            <a class="btn btn-secondary btn-lg" href="#" id="learnMore" role="button">Learn More</a>
+                        </p>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-4 hidden animate__animated">
+                                <h2>Secure</h2>
+                                <p>We prioritize your security with industry-leading practices and technologies to protect your data and transactions.</p>
+                            </div>
+                            <div class="col-md-4 hidden animate__animated">
+                                <h2>Easy to Use</h2>
+                                <p>Our user-friendly interface ensures you can manage your finances without any hassle. Whether you're depositing funds or checking your balance, it's all simple and intuitive.</p>
+                            </div>
+                            <div class="col-md-4 hidden animate__animated">
+                                <h2>24/7 Support</h2>
+                                <p>Our dedicated support team is here to help you around the clock. Reach out to us anytime for assistance with your account or transactions.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container mt-5">
+                        <section id="about" class="my-5 hidden animate__animated">
+                            <h2>About CoinMarketCapLimited</h2>
+                            <p>CoinMarketCapLimited is a leading financial grant company dedicated to providing funding solutions for innovative projects and businesses. We believe in empowering visionaries and entrepreneurs to achieve their goals by offering financial support and expert guidance.</p>
+                        </section>
+                        <section id="services" class="my-5 hidden animate__animated">
+                            <h2>Our Services</h2>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="card">
+                                        <img src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top" alt="Grant Funding">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Grant Funding</h5>
+                                            <p class="card-text">We provide comprehensive grant funding for businesses and projects that show promise and innovation.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card">
+                                        <img src="https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top" alt="Financial Consultancy">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Financial Consultancy</h5>
+                                            <p class="card-text">Our financial experts provide top-notch consultancy services to help you manage and grow your wealth.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card">
+                                        <img src="https://images.pexels.com/photos/3184394/pexels-photo-3184394.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top" alt="Investment Opportunities">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Investment Opportunities</h5>
+                                            <p class="card-text">We offer exclusive investment opportunities with high returns for our clients.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <section id="whyChooseUs" class="my-5 hidden animate__animated">
+                            <h2>Why Choose Us?</h2>
+                            <p>Choosing CoinMarketCapLimited means partnering with a team that is dedicated to your success. Our experienced professionals and tailored solutions ensure you receive the best support for your financial needs.</p>
+                        </section>
+                        <section id="mission" class="my-5 hidden animate__animated">
+                            <h2>Our Mission & Vision</h2>
+                            <p><strong>Mission:</strong> To provide exceptional financial support and services that empower businesses and individuals to achieve their full potential.</p>
+                            <p><strong>Vision:</strong> To be a global leader in financial grants and services, known for our commitment to excellence, innovation, and positive impact.</p>
+                        </section>
+                        <section id="faq" class="my-5 hidden animate__animated">
+                            <h2>Frequently Asked Questions (FAQ)</h2>
+                            <div id="faqAccordion">
+                                <div class="card">
+                                    <div class="card-header" id="headingOne">
+                                        <h5 class="mb-0">
+                                            <button class="btn btn-link" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                What is CoinMarketCapLimited?
+                                            </button>
+                                        </h5>
+                                    </div>
+                                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                                        <div class="card-body">
+                                            CoinMarketCapLimited is a financial grant company providing funding solutions for innovative projects and businesses.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header" id="headingTwo">
+                                        <h5 class="mb-0">
+                                            <button class="btn btn-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                How can I apply for a grant?
+                                            </button>
+                                        </h5>
+                                    </div>
+                                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                                        <div class="card-body">
+                                            You can apply for a grant by registering on our platform and submitting your project proposal through the application form.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header" id="headingThree">
+                                        <h5 class="mb-0">
+                                            <button class="btn btn-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                What services do you offer?
+                                            </button>
+                                        </h5>
+                                    </div>
+                                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                                        <div class="card-body">
+                                            We offer grant funding, financial consultancy, and exclusive investment opportunities.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <section id="contact" class="my-5 hidden animate__animated">
+                            <h2>Contact Us</h2>
+                            <form id="contactForm">
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Name</label>
+                                    <input type="text" class="form-control" id="name" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email address</label>
+                                    <input type="email" class="form-control" id="email" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="message" class="form-label">Message</label>
+                                    <textarea class="form-control" id="message" rows="3" required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                        </section>
+                        <section id="video" class="my-5 hidden animate__animated">
+                            <h2>Understanding Grants</h2>
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/YOUR_VIDEO_ID_HERE" allowfullscreen></iframe>
+                            </div>
+                        </section>
+                    </div>
+                `;
+
+                document.getElementById('registerNow').addEventListener('click', () => loadRegisterForm());
+                document.getElementById('learnMore').addEventListener('click', () => alert("More information about the platform."));
+                setupScrollAnimations();
+            };
+
+            const loadRegisterForm = () => {
+                contentDiv.innerHTML = `
+                    <h2>Register</h2>
+                    <form id="registerForm">
+                        <div class="mb-3">
+                            <label for="registerUsername" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="registerUsername" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="registerEmail" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="registerEmail" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="registerPassword" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="registerPassword" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Register</button>
+                    </form>
+                `;
+                document.getElementById('registerForm').addEventListener('submit', registerUser);
+            };
+
+            const loadLoginForm = () => {
+                contentDiv.innerHTML = `
+                    <h2>Login</h2>
+                    <form id="loginForm">
+                        <div class="mb-3">
+                            <label for="loginUsername" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="loginUsername" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="loginPassword" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="loginPassword" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </form>
+                `;
+                document.getElementById('loginForm').addEventListener('submit', loginUser);
+            };
+
+            const loadDepositForm = () => {
+                contentDiv.innerHTML = `
+                    <h2>Deposit</h2>
+                    <form id="depositForm">
+                        <div class="mb-3">
+                            <label for="depositAmount" class="form-label">Amount</label>
+                            <input type="number" class="form-control" id="depositAmount" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Deposit</button>
+                    </form>
+                `;
+                document.getElementById('depositForm').addEventListener('submit', depositMoney);
+            };
+
+            const registerUser = (event) => {
+                event.preventDefault();
+                alert('User registered successfully!');
+                loadLoginForm();
+            };
+
+            const loginUser = (event) => {
+                event.preventDefault();
+                alert('User logged in successfully!');
+                depositLink.style.display = 'block';
+                logoutLink.style.display = 'block';
+                registerLink.style.display = 'none';
+                loginLink.style.display = 'none';
+                showHomePage();
+            };
+
+            const depositMoney = (event) => {
+                event.preventDefault();
+                alert('Money deposited successfully!');
+            };
+
+            registerLink.addEventListener('click', (event) => {
+                event.preventDefault();
+                loadRegisterForm();
+            });
+
+            loginLink.addEventListener('click', (event) => {
+                event.preventDefault();
+                loadLoginForm();
+            });
+
+            depositLink.addEventListener('click', (event) => {
+                event.preventDefault();
+                loadDepositForm();
+            });
+
+            logoutLink.addEventListener('click', (event) => {
+                event.preventDefault();
+                alert('User logged out successfully!');
+                depositLink.style.display = 'none';
+                logoutLink.style.display = 'none';
+                registerLink.style.display = 'block';
+                loginLink.style.display = 'block';
+                showHomePage();
+            });
+
+            homeLink.addEventListener('click', (event) => {
+                event.preventDefault();
+                showHomePage();
+            });
+
+            showHomePage();
+        });
+
+        function setupScrollAnimations() {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.remove('hidden');
+                        entry.target.classList.add('animate__fadeIn');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.hidden').forEach(section => {
+                observer.observe(section);
+            });
+        }
+    </script>
+</body>
+</html> 
